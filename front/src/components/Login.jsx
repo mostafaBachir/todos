@@ -3,8 +3,7 @@ import { ControlLabel, Jumbotron, Button, Form} from 'react-bootstrap'
 import TextInput from './TextInput'
 export default class LoginForm extends Component {
   state = {
-    username: '',
-    password: ''
+    username: ''
   }
   handleInputChange = (event) => {
     console.log(event.target.value)
@@ -18,7 +17,7 @@ export default class LoginForm extends Component {
   }
   onSubmit = (event) => {
     event.preventDefault()
-    this.props.onSubmit(this.state.username, this.state.password)
+    this.props.onSubmit(this.state.username)
   }
   render() {
     const errors = this.props.errors || {}
@@ -35,9 +34,6 @@ export default class LoginForm extends Component {
           <TextInput name="username" label="Username"
                      error={errors.username}
                      onChange={this.handleInputChange} />
-          <TextInput name="password" label="Password"
-                     error={errors.password} type="password"
-                     onChange={this.handleInputChange}/>
           <Button type="submit" color="primary" size="lg">
              Se connecter
           </Button>

@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import LoginForm from '../components/Login'
-import {login} from  '../store/actions/authActions'
-import {errors, isAuthenticated} from '../store/reducers/authReducer'
+import {login_or_create} from  '../store/actions/authActions'
+import {errors} from '../store/reducers/authReducer'
 const Login = (props) => {
   console.log(props)
   if(props.isAuthenticated) {
@@ -19,11 +19,11 @@ const Login = (props) => {
 }}
 const mapStateToProps = (state) => ({
   errors: errors(state.gestion_auth),
-  isAuthenticated: isAuthenticated(state.gestion_auth)
+  isAuthenticated: state.gestion_auth.is_auth
 })
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit: (username, password) => {
-    dispatch(login(username, password))
+  onSubmit: (username) => {
+    dispatch(login_or_create(username))
   }
 })
 
